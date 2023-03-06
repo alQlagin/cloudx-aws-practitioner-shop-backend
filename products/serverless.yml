@@ -13,6 +13,8 @@ provider:
   runtime: nodejs12.x
   profile: personalAccount
   region: us-east-1
+  httpApi:
+    cors: true
 
 functions:
   products:
