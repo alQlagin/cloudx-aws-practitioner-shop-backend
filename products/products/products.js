@@ -8,5 +8,7 @@ export const loadProducts = async () => {
 }
 
 export const getProduct = async (id) => {
+    id = Number(id);
+    if (Number.isNaN(id)) return undefined;
     return products.find(product => product.id === id)
 }
