@@ -1,7 +1,12 @@
 import {getProduct} from "../products/products";
 
 export const productDetails = async (event) => {
-    const {id} = event.pathParameters;
+    const {id} = event?.pathParameters ?? {};
+
+    if (!id) return {
+        statusCode: '400',
+        body: JSON.stringify({errorMessage: 'Id not provided'})
+    }
 
     let product = await getProduct(id);
     if (product)
