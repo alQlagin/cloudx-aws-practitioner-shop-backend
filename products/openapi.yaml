@@ -1,0 +1,68 @@
+openapi: "3.0.2"
+info:
+  title: Products
+  version: "1.0"
+servers:
+  - url: https://1szjv7a7v6.execute-api.us-east-1.amazonaws.com/
+paths:
+  /products:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+  /products/{productId}:
+    parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+          format: float
+        count:
+          type: integer
+      example:
+        id: 1
+        title: AWS
+        description: Cloud provider
+        price: 10
+        count: 1
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string

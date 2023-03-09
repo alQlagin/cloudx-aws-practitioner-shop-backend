@@ -16,6 +16,9 @@ provider:
   httpApi:
     cors: true
 
+custom:
+  documentation:
+
 functions:
   products:
     handler: ./lambdas/products-list.productList
